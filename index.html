@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <title>Simple Test Page</title>
+  <style>
+    #test::after {
+      content: '|';
+      margin-left: 5px;
+      animation: blink 0.7s infinite;
+    }
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Test HTML File</title>
-</head>
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
 
-<body>
-  <p>This is a very simple HTML file.</p>
-</body>
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
+  <body onload="typeWriter()">
+    <p id="test"></p>
+    <script>
+      var i = 0;
+      var txt = 'This is a very simple HTML file.';
+      var speed = 100;
 
+      function typeWriter() {
+        if (i < txt.length) {
+          document.getElementById("test").innerHTML += txt.charAt(i);
+          i++;
+          setTimeout(typeWriter, speed);
+        }
+      }
+    </script>
+  </body>
 </html>
